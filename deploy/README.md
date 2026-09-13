@@ -13,7 +13,7 @@
 
 ```bash
 # 1) 下载 Release 包（内含已构建的前端，无需 Node.js）
-wget https://github.com/ithtelab/workbuddy-manager/releases/latest/download/workbuddy-manager-<版本>.tar.gz
+wget https://github.com/JacksenHu/workbuddy-manager/releases/latest/download/workbuddy-manager-<版本>.tar.gz
 tar xzf workbuddy-manager-*.tar.gz
 cd workbuddy-manager-*
 
@@ -36,7 +36,7 @@ sudo bash deploy/install.sh
 ## 二、通过 git clone 部署
 
 ```bash
-git clone https://github.com/ithtelab/workbuddy-manager.git
+git clone https://github.com/JacksenHu/workbuddy-manager.git
 cd workbuddy-manager
 
 # 需先在 web/ 构建前端（git 仓库不含构建产物）

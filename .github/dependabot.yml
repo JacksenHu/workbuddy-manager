@@ -1,0 +1,50 @@
+# 依赖更新自动化。
+#
+# 本项目曾因 Next.js 15.3.8 落在多个安全公告影响范围内而专门升级（见 CHANGELOG v1.0.12），
+# 巡检式的人工跟进容易遗漏，故交给 dependabot 定期提醒。
+#
+# 分组策略：把常规小版本合并成一个 PR，避免一次开十几个 PR 造成噪声；
+# 安全更新不分组，单独出 PR，便于优先处理。
+version: 2
+updates:
+  # 前端依赖（Next.js / React / Tailwind 等）
+  - package-ecosystem: npm
+    directory: /web
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    groups:
+      web-minor-patch:
+        patterns:
+          - '*'
+        update-types:
+          - minor
+          - patch
+    commit-message:
+      prefix: 'chore(deps)'
+
+  # 后端依赖（FastAPI / uvicorn / httpx / pydantic）
+  - package-ecosystem: pip
+    directory: /server
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 5
+    groups:
+      server-minor-patch:
+        patterns:
+          - '*'
+        update-types:
+          - minor
+          - patch
+    commit-message:
+      prefix: 'chore(deps)'
+
+  # GitHub Actions 自身（checkout / setup-node 等）
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: 'chore(ci)'

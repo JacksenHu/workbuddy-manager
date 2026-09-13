@@ -7,7 +7,39 @@
 
 ---
 
-## [1.0.17] - 2026-09-13
+## [未发布]
+
+### 变更
+- **仓库归属改为本仓库（`JacksenHu/workbuddy-manager`）**。此前代码与文档里的
+  仓库地址全部指向上游原作者仓库 `ithtelab/workbuddy-manager`，后果是：
+  管理端「一键更新」查询的是**别人的 Release**，永远发现不了本仓库的改动；
+  Release 徽章、Issue 模板、部署文档里的下载链接也都指向别处。
+  现统一改为本仓库，共 18 处（源码 3 处 + 文档 15 处）：
+  - `server/services/updater.py`、`deploy/update.py` 的 `MANAGER_REPO` 默认值
+    —— 仍可用环境变量 `WB_MANAGER_REPO=<owner>/<name>` 覆盖，fork 后无需改代码
+  - 前端 `ChangelogPanel.tsx` 的 Release 链接
+  - `README.md` / `CHANGELOG.md` / `deploy/README.md` / `docs/SECURITY-AUDIT.md`
+    与 `.github/ISSUE_TEMPLATE/config.yml` 中的全部链接
+
+### 新增
+- **`SECURITY.md`**：漏洞报告渠道（GitHub 私密报告，不走公开 Issue）、
+  支持范围，以及部署者必须遵守的安全须知（HTTPS、改初始密码、端口收敛、
+  `WB_TRUSTED_PROXY_HOPS` 与 CDN 层数的关系）
+- **`CONTRIBUTING.md`**：环境准备、提交前必做（后端测试全绿 + 前端可构建）、
+  代码与注释风格约定、提交信息规范，并明确**不修改上游 workbuddy2api**
+- **`.github/PULL_REQUEST_TEMPLATE.md`**：带一条「未修改上游、未含凭据」的确认清单
+- **`.github/dependabot.yml`**：前端（npm）、后端（pip）与 GitHub Actions 的
+  定期依赖巡检。本项目曾因 Next.js 15.3.8 落在安全公告范围内而专门升级
+  （v1.0.12），人工跟进容易遗漏，故交给自动化提醒；小版本合并为单个 PR 降低噪声
+- README 增加「最近提交」徽章，并在反馈区块补上安全策略与贡献指南入口
+
+### 改进
+- `.gitignore` 排除 `.workbuddy/`（本地工作区元数据，非项目内容）
+- 修复 `updater.py` 的一处 `DeprecationWarning`：`re.split` 的 `maxsplit`
+  改为关键字传参（Python 3.13 起位置传参已弃用）
+- README 补充说明：fork 后需把 `MANAGER_REPO` 或 `WB_MANAGER_REPO` 指向自己的仓库，
+  否则一键更新仍会去查原仓库
+
 
 ### 修复
 - **升级后「更新日志」页报「未找到更新日志文件」**：v1.0.16 新增的更新日志页
@@ -209,7 +241,7 @@
   `www.codebuddy.cn`），且 `chatBase()` / `billingBase()` 不看账号的
   `domain` 字段（该字段只作为 `X-Domain` 请求头发送，是企业标识而非区域标识）。
   需上游先做成按账号/按域选择 base URL，本端再把自实现的登录/签到/余额地址
-  改为可配置。见 [Issue #1](https://github.com/ithtelab/workbuddy-manager/issues/1)
+  改为可配置。见 [Issue #1](https://github.com/JacksenHu/workbuddy-manager/issues/1)
 
 ## [1.0.11] - 2026-09-13
 
@@ -673,6 +705,6 @@
 
 ## 版本对比
 
-- [v1.0.1 → v1.0.2](https://github.com/ithtelab/workbuddy-manager/compare/v1.0.1...v1.0.2)
-- [v1.0.0 → v1.0.1](https://github.com/ithtelab/workbuddy-manager/compare/v1.0.0...v1.0.1)
-- [全部提交](https://github.com/ithtelab/workbuddy-manager/commits/main)
+- [v1.0.1 → v1.0.2](https://github.com/JacksenHu/workbuddy-manager/compare/v1.0.1...v1.0.2)
+- [v1.0.0 → v1.0.1](https://github.com/JacksenHu/workbuddy-manager/compare/v1.0.0...v1.0.1)
+- [全部提交](https://github.com/JacksenHu/workbuddy-manager/commits/main)

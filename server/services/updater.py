@@ -307,7 +307,7 @@ _VERSION_CACHE_FILE = config.DATA_DIR / 'version-check.json'
 VERSION_CACHE_TTL = 6 * 3600          # 6 小时
 UPSTREAM_API_REPO = os.environ.get('WB_UPSTREAM_API_REPO') or 'Sliverkiss/workbuddy2api'
 # 管理端仓库（owner/name），用于查询最新 Release
-MANAGER_REPO = os.environ.get('WB_MANAGER_REPO') or 'ithtelab/workbuddy-manager'
+MANAGER_REPO = os.environ.get('WB_MANAGER_REPO') or 'JacksenHu/workbuddy-manager'
 _upstream_api_repo_cache: str | None = None
 
 
@@ -401,7 +401,7 @@ def _fetch_upstream_changes(slug: str, base_sha: str, head_sha: str) -> dict:
 
 def _parse_version(v: str) -> tuple[int, ...] | None:
     """把 v1.2.3 / 1.2 解析成可比较的数字元组；含非数字段则返回 None。"""
-    s = re.split(r'[-+]', str(v or '').strip().lstrip('vV'), 1)[0]
+    s = re.split(r'[-+]', str(v or '').strip().lstrip('vV'), maxsplit=1)[0]
     parts = [p for p in s.split('.') if p != '']
     if not parts:
         return None

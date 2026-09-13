@@ -9,7 +9,7 @@ import {systemApi} from '@/lib/api';
 import {cn} from '@/lib/utils';
 import type {Changelog, ChangelogItem} from '@/lib/types';
 
-const REPO_URL = 'https://github.com/ithtelab/workbuddy-manager/releases';
+const REPO_URL = 'https://github.com/JacksenHu/workbuddy-manager/releases';
 
 /** 分类配色，让「安全」「修复」这类一眼可辨 */
 const SECTION_STYLE: Record<string, string> = {
