@@ -7,7 +7,7 @@
 
 ---
 
-## [未发布]
+## [1.0.17] - 2026-09-13
 
 ### 变更
 - **仓库归属改为本仓库（`JacksenHu/workbuddy-manager`）**。此前代码与文档里的
@@ -33,14 +33,6 @@
   （v1.0.12），人工跟进容易遗漏，故交给自动化提醒；小版本合并为单个 PR 降低噪声
 - README 增加「最近提交」徽章，并在反馈区块补上安全策略与贡献指南入口
 
-### 改进
-- `.gitignore` 排除 `.workbuddy/`（本地工作区元数据，非项目内容）
-- 修复 `updater.py` 的一处 `DeprecationWarning`：`re.split` 的 `maxsplit`
-  改为关键字传参（Python 3.13 起位置传参已弃用）
-- README 补充说明：fork 后需把 `MANAGER_REPO` 或 `WB_MANAGER_REPO` 指向自己的仓库，
-  否则一键更新仍会去查原仓库
-
-
 ### 修复
 - **升级后「更新日志」页报「未找到更新日志文件」**：v1.0.16 新增的更新日志页
   只读部署根目录的 `CHANGELOG.md`，但**更新器与安装脚本都不会把该文件放进
@@ -56,6 +48,13 @@
 - 顺带说明：v1.0.16 里「更新时同步 CHANGELOG.md/README.md」的改动本身没错，
   但它只在**下一次**更新时才生效，救不了当时已经装上的那份；这次的兜底
   副本才是真正覆盖所有情况的做法
+
+### 改进
+- `.gitignore` 排除 `.workbuddy/`（本地工作区元数据，非项目内容）
+- 修复 `updater.py` 的一处 `DeprecationWarning`：`re.split` 的 `maxsplit`
+  改为关键字传参（Python 3.13 起位置传参已弃用）
+- README 补充说明：fork 后需把 `MANAGER_REPO` 或 `WB_MANAGER_REPO` 指向自己的仓库，
+  否则一键更新仍会去查原仓库
 
 ---
 
